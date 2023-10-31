@@ -53,7 +53,7 @@
             </div>
 
             <Transition name="fade" v-show="Menu">
-                <div class="space-y-3 lg:hidden md:flex-col md:justify-center md:items-center md:flex sm:flex-col sm:justify-center sm:items-center sm:flex z-10 absolute right-0 top-12 bg-gray-900 h-48 w-44 rounded-bl-md transition delay-100">
+                <div class="space-y-3 z-50 lg:hidden md:flex-col md:justify-center md:items-center md:flex sm:flex-col sm:justify-center sm:items-center sm:flex absolute right-0 top-12 bg-gray-900 h-48 w-44 rounded-bl-md transition delay-100">
                     <NuxtLink to="/">Home</NuxtLink>
                     <NuxtLink to="/series">Series</NuxtLink>
                     <NuxtLink to="/pages">Pages</NuxtLink>

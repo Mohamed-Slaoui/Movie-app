@@ -7,12 +7,14 @@ export default {
     "./plugins/**/*.{js,ts}",
     "./app.vue",
     "./error.vue",
-    "./node_modules/flowbite/**/*.{js,ts}"
+    "./nuxt.config.{js,ts}",
   ],
   theme: {
     extend: {},
   },
   plugins: [
+    require('tailwindcss'),
+    require('autoprefixer')
   ],
 }
 
