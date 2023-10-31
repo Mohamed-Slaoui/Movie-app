@@ -14,10 +14,10 @@
 
 <template>
     <transition name="switch">
-    <nav class="flex justify-between items-center space-x-3 px-5 bg-black h-12 text-white">
-        <NuxtLink class="text-3xl font-bold" to="/" style="color:white;">Movify</NuxtLink>
+    <nav class="flex justify-between items-center space-x-3 px-5 bg-gray-800 h-12 text-white">
+        <NuxtLink class="text-3xl font-bold lg:w-[30%]" to="/" style="color:white;text-decoration: none;">Movify</NuxtLink>
 
-        <div class="md:w-96 lg:flex lg:justify-center md:justify-center space-x-5 sm:hidden md:hidden">
+        <div class="md:w-96 lg:text-lg lg:font-bold lg:flex lg:justify-center md:justify-center space-x-5 sm:hidden md:hidden">
             <NuxtLink to="/">Home</NuxtLink>
             <NuxtLink to="/series">Series</NuxtLink>
             <NuxtLink to="/pages">Pages</NuxtLink>
@@ -93,6 +93,7 @@
 
     .router-link-exact-active{
     color: Red;
+    text-decoration: underline;
     }
 
 </style>
