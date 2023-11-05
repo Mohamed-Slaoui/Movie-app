@@ -1,113 +1,52 @@
+
 <template>
-    <div class="text-white">
-        <h1 class="font-thin">Upcoming Movies</h1>
-        <hr class="-mt-8">
-        <!-- card section -->
-        <div class="w-full">
-            <q-carousel
-                transition-prev="slide-right"
-                transition-next="slide-left"
-                swipeable
-                animated
-                control-color="orange"
-                v-model="slider"
-                infinite
-                arrows
-                class="sm:h-[40vh] lg:h-[60vh] overflow-hidden"
-            >
-                <q-carousel-slide class="pt-2 overflow-hidden bg-gray-800" v-for="(up, index) in jsonData" :key="up.id" :name="up.id">
-                <div class="flex justify-center items-center sm:space-x-1 lg:space-x-2 no-wrap sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6">
-                    <!-- Small screen -->
-                    <img
-                    :src="getImage(jsonData[Math.floor(Math.random() * jsonData.length)].poster_path)"
-                    class="w-60 transition duration-300 ease-out hover:scale-110 hover:cursor-pointer overflow-hidden"
-                    />
-
-                    <img
-                    :src="getImage(jsonData[Math.floor(Math.random() * jsonData.length)].poster_path)"
-                    class="w-60 transition duration-300 ease-out hover:scale-110 hover:cursor-pointer overflow-hidden"
-                    />
-
-                    <img
-                    :src="getImage(jsonData[Math.floor(Math.random() * jsonData.length)].poster_path)"
-                    class="w-60 transition duration-300 ease-out hover:scale-110 hover:cursor-pointer overflow-hidden"
-                    />
-
-                    <img
-                    :src="getImage(jsonData[Math.floor(Math.random() * jsonData.length)].poster_path)"
-                    class="w-60 transition duration-300 ease-out hover:scale-110 hover:cursor-pointer overflow-hidden"
-                    />
-
-                    <!-- lg screen -->
-
-                    <img
-                    :src="getImage(jsonData[Math.floor(Math.random() * jsonData.length)].poster_path)"
-                    class="sm:hidden md:hidden lg:flex w-60 transition duration-300 ease-out hover:scale-110 hover:cursor-pointer overflow-hidden"
-                    />
-
-                    <img
-                    :src="getImage(jsonData[Math.floor(Math.random() * jsonData.length)].poster_path)"
-                    class="sm:hidden md:hidden lg:flex w-60 transition duration-300 ease-out hover:scale-110 hover:cursor-pointer overflow-hidden"
-                    />
-                    
+    <div>
+        <div class="text-white font-primary">
+        <h1 class="font-bold text-2xl text-center py-5">Upcoming Movies</h1>
+    </div>
+        
+    <div id="default-carousel" class="relative w-full" data-carousel="slide">
+        <!-- Carousel wrapper -->
+        <div class="relative h-80 w-full overflow-hidden md:h-96">
+            
+            <div class="hidden duration-700 ease-in-out" v-for="(i, index) in jsonData" :key="i.id" data-carousel-item>
+                
+                <div class="flex justify-center space-x-1">
+                    <!-- small and med screen -->
+                    <cardImage :image="i.poster_path"/>
+                    <cardImage v-if="index < jsonData.length - 1" :image="jsonData[index + 1].poster_path" />
+                    <cardImage v-if="index < jsonData.length - 2" :image="jsonData[index + 2].poster_path" />
+                    <!-- large screen -->
+                    <div class="sm:hidden md:hidden lg:flex">
+                        <cardImage v-if="index < jsonData.length - 3" :image="jsonData[index + 3].poster_path" />
+                        <cardImage v-if="index < jsonData.length - 4" :image="jsonData[index + 4].poster_path" />
+                        <cardImage v-if="index < jsonData.length - 5" :image="jsonData[index + 5].poster_path" />
+                        <cardImage v-if="index < jsonData.length - 6" :image="jsonData[index + 6].poster_path" />
+                    </div>
                 </div>
-                </q-carousel-slide>
-            </q-carousel>
+
+            </div>
+
         </div>
+    </div>
+
+
     </div>
 </template>
 
+
 <script setup>
-    import { getApi, getImage } from '../tools/apiTools.js';
-    let slider = ref(1)
+import { initFlowbite } from 'flowbite'
+import { getApi,getImage } from '~/tools/apiTools';
 
+    let jsonData = ref([]);
     const { data } = await useFetch(getApi('upcoming'));
-    const jsonData = data._rawValue.results;
+    jsonData = data._rawValue.results;
+
+    onMounted(()=>{
+        initFlowbite();
+        
+    })
+
+
 </script>
-
-<style scoped>
-
-</style>
-
-<!-- 
-
-
-
-
-
-
-
-
-
-<div class="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 mt-1">
-            <div v-for="up in jsonData" class="relative overflow-hidden bg-cover bg-no-repeat">
-                <img
-                    :src="getImage(up.poster_path)"
-                    class=" transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer" 
-                />
-            </div>
-        </div>
--->
-
-<!-- 
-    <div class="" v-if="index + 1 < jsonData.length">
-                    <img
-                        :src="getImage(jsonData[Math.floor(Math.random() * jsonData.length)].poster_path)"
-                        class="w-60 transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer overflow-hidden"
-                    />
-                    </div>
-
-                    <div class="sm:hidden lg:flex flex justify-center items-center space-x-3 overflow-hidden lg:grid-cols-6 gap-2 mt-1">
-                        <img
-                            :src="getImage(up.poster_path)"
-                            class="w-60 transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer overflow-hidden"
-                        />
-                    
-                        <div class="" v-if="index + 1 < jsonData.length">
-                            <img
-                                :src="getImage(jsonData[Math.floor(Math.random() * jsonData.length)].poster_path)"
-                                class="w-60 transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer overflow-hidden"
-                            />
-                    </div>
-                    </div>
- -->

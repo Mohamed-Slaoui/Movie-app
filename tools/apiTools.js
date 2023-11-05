@@ -6,3 +6,10 @@ export const getImage = (ImgPath) =>{
     return `https://image.tmdb.org/t/p/original/${ImgPath}`;
 }
 
+export const shrinkOverview = (txt) =>{
+    if (txt.length > 100) {
+        return txt.substring(0, 100) + '...';
+    }
+
+    return txt;
+}

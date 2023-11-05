@@ -1,64 +1,73 @@
 <template>
-    <div class="relative">
-        <h1 class="absolute z-20 sm:left-28 md:left-40 text-4xl sm:top-4 lg:left-[35%] uppercase shadow-sm text-red-600 font-extrabold">Now playing movies</h1>
-        <q-spinner-ios v-if="isLoading" color="red" class="absolute sm:top-20 sm:left-72 z-50" size="5.5em" />
-        <q-carousel
-            class="lg:h-[60vh] sm:h-[42vh] md:h-[70vh]"
-            swipeable
-            animated
-            v-model="slide"
-            infinite
-            autoplay
-            transition-prev="slide-right"
-            transition-next="slide-left"
-            @mouseenter="autoplay = false"
-            @mouseleave="autoplay = true"
-        >
-        
-        
-        <q-carousel-slide class="p-0 overflow-hidden relative" v-for="i in jsonData" :key="i.id" :name="i.id">
-            <transition name="her">
-                <div class="flex justify-center">
-                        <h1 class="absolute text-white z-30 text-4xl sm:top-28 lg:top-44 font-thin">{{ i.title }}</h1>
-                        <button class="absolute z-50 text-white sm:top-40 lg:top-60 bg-red-600 text-sm rounded-sm hover:bg-red-700 sm:px-2 sm:py-2">Watch Now</button>
+
+<div id="controls-carousel" class="relative w-full" data-carousel="static">
+    <!-- Carousel wrapper -->
+    <div class="relative h-[54vh] overflow-hidden md:h-96">
+        <!-- Item 1 -->
+        <div class="hidden duration-700 ease-in-out" v-for="i in jsonData" data-carousel-item>
+            <img :src="getImage(i.backdrop_path)" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+            <div class="absolute inset-0 bg-slate-900 h-full opacity-80 to-transparent"></div>
+            
+            <div class="absolute px-10 space-x-4 flex justify-center items-center w-full h-full">
+                <!-- movie details -->
+
+                <div class=" flex justify-center space-y-8 flex-col w-72 h-80">
+                    <h1 class="text-3xl text-center font-bold">{{ i.title }}</h1>
+                    <p class="text-sm font-light text-gray-500">{{ shrinkOverview(i.overview )}}</p>
+                    <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Watch Now</button>
+                </div>
+
+                <!-- poster -->
+                <transition name="poster">
+                    <div class="py-4 w-72 flex items-center border border-gray-600 h-[50vh] rounded-md relative transition delay-100">
+                        <img :src="getImage(i.poster_path)" class="absolute shadow rounded-lg object-cover w-full h-96 max-h-full">
                     </div>
                 </transition>
-                <img
-                    class="object-cover w-screen h-[130vh] "
-                    :src="getImage(i.poster_path)"
-                />
-                <div class="absolute inset-0 bg-black opacity-80"></div>
-            </q-carousel-slide>
-
-        </q-carousel>
+            </div>
+        </div>
+        
     </div>
+    <!-- Slider controls -->
+    <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full cursor-pointer group focus:outline-none" data-carousel-prev>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+            </svg>
+            <span class="sr-only">Previous</span>
+        </span>
+    </button>
+    <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full cursor-pointer group focus:outline-none" data-carousel-next>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-red-500 dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="sr-only">Next</span>
+        </span>
+    </button>
+</div>
+
 
 </template>
 
 <script setup>
-    import { getApi, getImage } from '../tools/apiTools.js';
-    let slide = ref(1)
-    let isLoading = ref(false);
+    import { getApi, getImage, shrinkOverview } from '../tools/apiTools.js';
+    import { initFlowbite } from 'flowbite';
 
-    const { data } = await useFetch(getApi('now_playing'));
-    const jsonData = data._rawValue.results;
-    if (jsonData) {
-        isLoading.value = true;
-        setTimeout(() => {
-            isLoading.value = false;
-        }, 5000);
-    }
+
+    let jsonData = ref([]);
+    // let isLoading = ref(true);
+
+    onMounted(()=>{
+        initFlowbite();
+    })
+
+    const { data } = await useFetch(getApi('popular'));
+    jsonData = data._rawValue.results;
+    
+    
 
 </script>
 
 <style scoped>
-    .her-enter-from {
-        transition: all 0.4s;
-        transform: rotate(190deg);
-    }
-    
-    .her-leave-to{
-        transition: all 0.4s;
-        transform: translateY(290px);
-    }
+
 </style>

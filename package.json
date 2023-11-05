@@ -22,6 +22,8 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.16.7",
+    "axios": "^1.6.0",
+    "flowbite": "^2.0.0",
     "quasar": "^2.13.0"
   }
 }

@@ -8,13 +8,18 @@ export default {
     "./app.vue",
     "./error.vue",
     "./nuxt.config.{js,ts}",
+    "./node_modules/flowbite/**/*.{js,ts}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        'primary': ['Poppins']
+      }
+    },
   },
   plugins: [
     require('tailwindcss'),
-    require('autoprefixer')
+    require('flowbite/plugin')
   ],
 }
 
