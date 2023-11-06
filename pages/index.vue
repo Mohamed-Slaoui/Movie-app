@@ -5,3 +5,12 @@
   </div>
 </template>
 
+<script setup>
+  useSeoMeta({
+      title: 'Home',
+  })
+</script>
+
+<style lang="scss" scoped>
+
+</style>
