@@ -14,6 +14,9 @@ export default {
     extend: {
       fontFamily:{
         'primary': ['Poppins']
+      },
+      screens: {
+        'sm': '576px',
       }
     },
   },
