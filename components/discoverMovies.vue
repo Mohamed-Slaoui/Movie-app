@@ -19,7 +19,7 @@ import { getAllMovies } from '~/tools/apiTools';
 
 const { data } = await useFetch(getAllMovies);
 const Movies = data._rawValue.results;
-console.log(Movies);
+// console.log(Movies);
 
 </script>
 

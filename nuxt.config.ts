@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   
   modules: [
     'nuxt-icon',
-    'nuxt-quasar-ui'
+    '@pinia/nuxt'
     
   ],
   devtools: { enabled: false },

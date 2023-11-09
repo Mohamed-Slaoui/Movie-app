@@ -1,3 +1,4 @@
+<!-- Layout -->
 <template>
     <!-- Navbar -->
     <Navbar/>

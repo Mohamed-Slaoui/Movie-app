@@ -1,23 +1,3 @@
-<script setup>
-    let Menu = ref(false);
-    const toggleMenu = () => {
-        Menu.value = !Menu.value;
-    }
-
-    const toggleMenuOnMouseLeave = () =>{
-        setTimeout(() => {
-            Menu.value = false;
-        }, 1000);
-    }
-
-    let searchBar = ref(false);
-    const toggleSearchBar = () => {
-        searchBar.value = !searchBar.value;
-    }
-
-
-</script>
-
 <template>
     <transition name="switch">
     <nav class=" z-50 flex justify-between items-center space-x-3 px-5 bg-black h-12 text-white font-primary">
@@ -40,7 +20,14 @@
 
             <div class="flex space-x-1 items-center relative">
                 <transition name="search">
-                    <input v-show="searchBar" type="text" class="rounded-md py-1 px-3 bg-gray-700 border-0 shadow-lg outline-none transition duration-400 ease-in-out delay-100 focus:outline-0 focus:ring-orange-500 placeholder:text-sm" placeholder="search something...">
+                    <input
+                        @keyup="()=> searchNow(searchWord)"
+                        v-show="searchBar"
+                        v-model="searchWord" 
+                        type="text" 
+                        class="rounded-md py-1 px-3 bg-gray-700 border-0 shadow-lg outline-none transition duration-400 ease-in-out delay-100 focus:outline-0 focus:ring-gray-600 placeholder:text-sm" 
+                        placeholder="search something..."
+                    >
                 </transition>
                 <Icon @click="toggleSearchBar" class="border rounded-full p-1 absolute right-1 hover:bg-gray-600 cursor-pointer" name="ph:magnifying-glass" color="white" size="25px"/>
             </div>
@@ -76,6 +63,40 @@
     </nav>
 </transition>
 </template>
+
+<script setup>
+    import {useSearchStore} from '../store/index.js'
+    const {searchNow} = useSearchStore();
+
+    const emit = defineEmits(["clicked"]);
+
+
+    let Menu = ref(false);
+    let searchWord = ref('');
+
+    const toggleMenu = () => {
+        Menu.value = !Menu.value;
+    }
+
+    const toggleMenuOnMouseLeave = () =>{
+        setTimeout(() => {
+            Menu.value = false;
+        }, 1000);
+    }
+
+    // const toggleSearchOnMouseLeave = () =>{
+    //     setTimeout(() => {
+    //         searchBar.value = false;
+    //     }, 4000);
+    // }
+
+    let searchBar = ref(false);
+    const toggleSearchBar = () => {
+        searchBar.value = !searchBar.value;
+    }
+
+
+</script>
 
 <style scoped>
     .fade-enter-from {

@@ -18,6 +18,15 @@ export const getMovieById = (id) => {
     return `https://api.themoviedb.org/3/movie/${id}?api_key=bad062b33ad4ea1aef293cb220260cc3`
 }
 
+
+
+export const getMovieBySearch = (text) =>{
+    return `https://api.themoviedb.org/3/search/multi?query=${text}&api_key=bad062b33ad4ea1aef293cb220260cc3`;
+}
+
+
+
+
 export const getMovieVideoAPI = (id) => {
     return `https://api.themoviedb.org/3/movie/${id}/videos?api_key=bad062b33ad4ea1aef293cb220260cc3`
 }
