@@ -21,8 +21,8 @@
         >
           <!-- movie details -->
 
-          <div class="flex justify-center space-y-8 flex-col w-72 h-80">
-            <h1 class="text-3xl text-center font-bold">{{ i.title }}</h1>
+          <div class="flex justify-center space-y-8 flex-col w-72 h-full">
+            <h1 class="text-2xl text-center font-bold">{{ i.title }}</h1>
             <p class="text-sm font-light text-gray-500">
               {{ shrinkOverview(i.overview) }}
             </p>
@@ -41,7 +41,7 @@
             >
               <img
                 :src="getImage(i.poster_path)"
-                class="absolute shadow rounded-lg object-cover w-full h-96 max-h-full"
+                class="absolute shadow rounded-lg object-cover w-full h-96 max-h-full ease-in-out delay-100 transition"
               />
             </div>
           </transition>

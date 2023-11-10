@@ -5,7 +5,7 @@
             <div class="absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent"></div>
             
                 <div class="flex justify-center">
-                    <div class="absolute flex justify-center space-x-2 py-3 z-30 w-[85%] h-[50vh] bottom-40 rounded-lg" style="background-color: rgb(73 68 99 / 40%)">
+                    <div class="absolute flex justify-center space-x-2 py-3 z-30 min-w-[95%] min-h-[50vh] bottom-40 rounded-lg mx-2" style="background-color: rgb(73 68 99 / 40%)">
                     <div class=" w-[35%] relative">
                         <img 
                             :src="getImage(Movie.poster_path)" 
@@ -19,7 +19,7 @@
                             <div class="flex space-x-1">
                                 <span v-for="i in Movie.genres" class="bg-orange-500 p-1 rounded-lg">{{i.name}}</span>  
                             </div>
-                            <span class="text-sm">{{ Movie.overview }}</span>   
+                            <span class="text-xs">{{ Movie.overview }}</span>   
                             <button @click="watchTrailer" type="button" class="text-white bg-gradient-to-r w-32 from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 shadow-lg shadow-orange-500/50 font-medium rounded-lg text-sm py-2.5 text-center">Watch Trailer</button>
                     </div>
                     </div>

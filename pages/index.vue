@@ -1,21 +1,12 @@
 <template name="fade">
   <transition>
   
-  <div class="w-full text-white bg-gray-950 flex flex-col space-y-2 overflow-hidden">
-    {{ searchterm }}
-    <div v-if="!searchterm">
+  <div class="w-full text-white bg-gray-950 flex flex-col space-y-2 overflow-hidden font-primary">
+    <div>
       <Hero class="font-primary"/>
       <upcoming class="px-10 py-1"/>
       <DiscoverMovies class="px-10"/>
     </div>
-    <div v-else class="grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9 lg:gap-3 sm:gap-1 place-items-center h-full">
-        <CardImage v-for="movie in Movies" 
-        :key="movie.id" 
-        :image="movie.poster_path" 
-        :id="movie.id" 
-        class="w-40 px-3 py-0.5"
-        />
-  </div>
 
   </div>
 

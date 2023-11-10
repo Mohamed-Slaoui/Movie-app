@@ -9,7 +9,7 @@
       :key="movie.id" 
       :image="movie.poster_path" 
       :id="movie.id" 
-      class="w-40"
+      class="w-40 px-[9px]"
     />
   </div>
 </template>
