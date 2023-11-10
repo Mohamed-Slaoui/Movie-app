@@ -4,21 +4,21 @@
             <img class="sm:h-[93.7vh] lg:h-[94vh] w-full object-cover opacity-80" :src="getImage(Movie.backdrop_path)">
             <div class="absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent"></div>
             
-                <div class="flex justify-center">
-                    <div class="absolute flex justify-center space-x-2 py-3 z-30 min-w-[95%] min-h-[50vh] bottom-40 rounded-lg mx-2" style="background-color: rgb(73 68 99 / 40%)">
-                    <div class=" w-[35%] relative">
+                <div class="flex justify-center ">
+                    <div class="absolute flex justify-center space-x-2 py-3 z-30 min-w-[96%] min-h-[50vh] sm:top-[13%] rounded-lg mx-2" style="background-color: rgba(39, 37, 47, 0.584)">
+                    <div class=" sm:w-[35%] relative">
                         <img 
                             :src="getImage(Movie.poster_path)" 
                             class="absolute rounded-lg object-cover w-full h-full max-h-full" 
                             :alt=" Movie.title ">
                     </div>
                     <div class=" w-[60%] flex flex-col justify-evenly space-y-1 text-white">
-                            <span class="text-3xl font-bold">{{ Movie.title? Movie.title : Movie.name }}</span>
-                            <span class="text-md font-medium text-orange-500">Release On: <span class="text-white">{{ Movie.release_date? Movie.release_date: Movie.first_air_date  }} </span></span>  
-                            <span v-if="Movie.runtime" class="text-md font-medium text-orange-500">Runtime: <span class="text-white">{{ Movie.runtime }} min</span></span>  
+                            <span class="lg:text-3xl sm:text-sm font-bold">{{ Movie.title? Movie.title : Movie.name }}</span>
+                            <span class="lg:text-md sm:text-xs font-medium text-orange-500">Release On: <span class="text-white">{{ Movie.release_date? Movie.release_date: Movie.first_air_date  }} </span></span>  
+                            <span v-if="Movie.runtime" class="lg:text-md sm:text-xs font-medium text-orange-500">Runtime: <span class="text-white">{{ Movie.runtime }} min</span></span>  
 
                             <div class="flex space-x-1">
-                                <span v-for="i in Movie.genres" class=" bg-orange-500 p-1 text-xs rounded-lg">{{i.name}}</span>  
+                                <span v-for="i in Movie.genres" class=" bg-orange-500 lg:p-1 sm:px-[1px] text-xs rounded-md">{{i.name}}</span>  
                             </div>
 
                             <span class="text-xs">{{ Movie.overview }}</span>   

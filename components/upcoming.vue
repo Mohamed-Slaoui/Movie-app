@@ -6,7 +6,7 @@
 
         <div id="default-carousel" class="relative w-full " data-carousel="slide">
             <!-- Carousel wrapper -->
-            <div class="relative h-80 w-full overflow-hidden md:h-96">
+            <div class="relative sm:h-[25vh] w-full overflow-hidden md:h-96">
 
                 <div class="hidden duration-700 ease-in-out" v-for="(i, index) in jsonData" :key="i.id" data-carousel-item>
 

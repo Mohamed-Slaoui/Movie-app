@@ -16,7 +16,7 @@ export default {
         'primary': ['Poppins']
       },
       screens: {
-        'sm': '576px',
+        'sm': '100px',
       }
     },
   },

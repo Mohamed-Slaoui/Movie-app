@@ -7,7 +7,7 @@
 
         <DiscoverMovies 
         :api_key="getAllTvshow()" 
-        class="px-1"/>
+        class="px-10"/>
 
     </div>
 </template>

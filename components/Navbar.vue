@@ -2,11 +2,11 @@
     <transition name="switch">
         <nav class=" z-50 flex justify-between items-center space-x-3 px-5 bg-black h-12 text-white font-primary">
             <div>
-                <NuxtLink class="text-3xl font-bold lg:w-[30%] flex items-center" to="/"
+                <NuxtLink class="lg:text-3xl font-bold sm:text-lg lg:w-[30%] flex items-center" to="/"
                     style="color:white;text-decoration: none;">
                     <Icon class="cursor-pointer mb-1 "
                         name="streamline:food-popcorn-cook-corn-movie-snack-cooking-nutrition-bake" color="white"
-                        size="25px" />
+                        size="20px" />
                     <span>Movify</span>
                 </NuxtLink>
             </div>
@@ -28,7 +28,7 @@
                             @keyup="() => searchNow(searchWord)" 
                             v-show="searchBar" v-model="searchWord"
                             type="text"
-                            class="rounded-md py-1 px-3 bg-gray-700 border-0 shadow-lg outline-none transition duration-400 ease-in-out delay-100 focus:outline-0 focus:ring-gray-600 placeholder:text-sm"
+                            class="rounded-md py-1 px-3 sm:w-60 bg-gray-700 border-0 shadow-lg outline-none transition duration-400 ease-in-out delay-100 focus:outline-0 focus:ring-gray-600 placeholder:text-sm"
                             placeholder="search something...">
                     </transition>
                     <Icon @click="toggleSearchBar"

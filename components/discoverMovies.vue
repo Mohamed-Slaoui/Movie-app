@@ -1,6 +1,6 @@
 <template>
 
-  <div class="grid sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 md:gap-2 lg:gap-3 sm:gap-1 place-items-center">
+  <div class="grid sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-9 md:gap-2 lg:gap-3 sm:gap-1 place-items-center">
 
     <CardImage v-for="movie in Movies" 
       :key="movie.id" 

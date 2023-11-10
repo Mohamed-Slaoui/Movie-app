@@ -22,8 +22,8 @@
           <!-- movie details -->
 
           <div class="flex justify-center space-y-8 flex-col w-72 h-full">
-            <h1 class="text-2xl text-center font-bold">{{ i.title }}</h1>
-            <p class="text-sm font-light text-gray-500">
+            <h1 class="lg:text-2xl sm:text-xs text-center font-bold">{{ i.title }}</h1>
+            <p class="lg:text-sm sm:text-xs font-light text-gray-400">
               {{ shrinkOverview(i.overview) }}
             </p>
             <NuxtLink
@@ -37,11 +37,11 @@
           <!-- poster -->
           <transition name="poster">
             <div
-              class="py-4 w-72 flex items-center border border-gray-600 h-[50vh] rounded-md relative transition delay-100"
+              class="py-4 w-72 flex items-center border border-gray-600  lg:h-[50vh] rounded-md relative transition delay-100"
             >
               <img
                 :src="getImage(i.poster_path)"
-                class="absolute shadow rounded-lg object-cover w-full h-96 max-h-full ease-in-out delay-100 transition"
+                class="absolute shadow rounded-lg object-cover w-full lg:h-96 lg:max-h-full ease-in-out delay-100 transition"
               />
             </div>
           </transition>
