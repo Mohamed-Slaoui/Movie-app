@@ -1,0 +1,87 @@
+<template>
+    <div id="controls-carousel" class="relative w-full" data-carousel="static">
+        <!-- Carousel wrapper -->
+        <div class="relative h-[54vh] overflow-hidden md:h-96">
+            <!-- Item 1 -->
+            <div class="hidden duration-700 ease-in-out" v-for="i in jsonData" data-carousel-item>
+                <img :src="getImage(i.backdrop_path)"
+                    class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" 
+                />
+                <div class="absolute inset-0 bg-slate-900 h-full opacity-80 to-transparent"></div>
+
+                <div class="absolute px-10 space-x-4 flex justify-center items-center w-full h-full">
+                    <!-- poster -->
+                    <transition name="poster">
+                        <div
+                            class="py-4 w-72 flex items-center border border-gray-600 h-[50vh] rounded-md relative transition delay-100">
+                            <img :src="getImage(i.poster_path)"
+                                class="absolute shadow rounded-lg object-cover w-full h-96 max-h-full ease-in-out delay-100 transition" 
+                            />
+                        </div>
+                    </transition>
+
+                    <!-- movie details -->
+
+                        <div class="flex justify-center space-y-8 flex-col w-72 h-full">
+                            <h1 class="text-2xl text-center font-bold">{{ i.name }}</h1>
+                            <p class="text-sm font-light text-gray-400">
+                                {{ shrinkOverview(i.overview) }}
+                            </p>
+                            <NuxtLink :to="`./${i.media_type}/${i.id}`" type="button"
+                                class="text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                Watch Now
+                            </NuxtLink>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Slider controls -->
+        <button type="button"
+            class="absolute top-0 left-0 z-30 flex items-center justify-center h-full cursor-pointer group focus:outline-none"
+            data-carousel-prev>
+            <span
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <svg class="w-4 h-4 text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 1 1 5l4 4" />
+                </svg>
+                <span class="sr-only">Previous</span>
+            </span>
+        </button>
+        <button type="button"
+            class="absolute top-0 right-0 z-30 flex items-center justify-center h-full cursor-pointer group focus:outline-none"
+            data-carousel-next>
+            <span
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <svg class="w-4 h-4 text-blue-500 dark:text-gray-800" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 9 4-4-4-4" />
+                </svg>
+                <span class="sr-only">Next</span>
+            </span>
+        </button>
+    </div>
+</template>
+
+<script setup>
+import { getImage, shrinkOverview, getTvshow } from "../tools/apiTools.js";
+import { initFlowbite } from "flowbite";
+
+
+let jsonData = ref([]);
+
+onMounted(() => {
+    initFlowbite();
+});
+
+
+const { data } = await useFetch(getTvshow('top_rated'));
+jsonData = data._rawValue.results;
+console.log(jsonData);
+
+console.log(jsonData);
+</script>
+

@@ -12,7 +12,7 @@
             </div>
 
             <div
-                class="md:w-96 lg:text-lg lg:font-bold lg:flex lg:justify-center md:justify-center space-x-5 sm:hidden md:hidden">
+                class="md:w-96 lg:text-lg lg:flex lg:justify-center md:justify-center space-x-5 sm:hidden md:hidden">
                 <NuxtLink to="/">Home</NuxtLink>
                 <NuxtLink to="/series">Series</NuxtLink>
                 <NuxtLink to="/pages">Pages</NuxtLink>
@@ -139,5 +139,4 @@ const toggleSearchBar = () => {
 
 .router-link-exact-active {
     color: orange;
-    text-decoration: underline;
 }</style>

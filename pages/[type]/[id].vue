@@ -13,14 +13,16 @@
                             :alt=" Movie.title ">
                     </div>
                     <div class=" w-[60%] flex flex-col justify-evenly space-y-1 text-white">
-                            <span class="text-3xl font-bold">{{ Movie.title }}</span>
-                            <span class="text-md font-medium text-orange-500">Release On: <span class="text-white">{{ Movie.release_date }}</span></span>  
-                            <span class="text-md font-medium text-orange-500">Runtime: <span class="text-white">{{ Movie.runtime }} min</span></span>  
+                            <span class="text-3xl font-bold">{{ Movie.title? Movie.title : Movie.name }}</span>
+                            <span class="text-md font-medium text-orange-500">Release On: <span class="text-white">{{ Movie.release_date? Movie.release_date: Movie.first_air_date  }} </span></span>  
+                            <span v-if="Movie.runtime" class="text-md font-medium text-orange-500">Runtime: <span class="text-white">{{ Movie.runtime }} min</span></span>  
+
                             <div class="flex space-x-1">
-                                <span v-for="i in Movie.genres" class="bg-orange-500 p-1 rounded-lg">{{i.name}}</span>  
+                                <span v-for="i in Movie.genres" class=" bg-orange-500 p-1 text-xs rounded-lg">{{i.name}}</span>  
                             </div>
+
                             <span class="text-xs">{{ Movie.overview }}</span>   
-                            <button @click="watchTrailer" type="button" class="text-white bg-gradient-to-r w-32 from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 shadow-lg shadow-orange-500/50 font-medium rounded-lg text-sm py-2.5 text-center">Watch Trailer</button>
+                            <button v-if="Movie.release_date" @click="watchTrailer" type="button" class="text-white bg-gradient-to-r w-32 from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 shadow-lg shadow-orange-500/50 font-medium rounded-lg text-sm py-2.5 text-center">Watch Trailer</button>
                     </div>
                     </div>
                 </div>
@@ -52,7 +54,9 @@
 
 <script setup>
     import { getMovieById, getImage, getMovieVideoAPI, getVideoURL } from '~/tools/apiTools';
-    const {id} = useRoute().params;
+    const {id, type} = useRoute().params;
+    console.log(useRoute().params);
+
     const clicked = ref(false);
 
     const watchTrailer = () =>{
@@ -64,7 +68,7 @@
     }
 
 
-    const { data } = await useFetch(getMovieById(id),{key:id});
+    const { data } = await useFetch(getMovieById(id,type),{key:id});
     const Movie = data._rawValue;
 
     const response = await useFetch(getMovieVideoAPI(id),{key:id});

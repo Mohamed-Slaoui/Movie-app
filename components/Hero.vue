@@ -10,7 +10,7 @@
       >
         <img
           :src="getImage(i.backdrop_path)"
-          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+          class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
         />
         <div
           class="absolute inset-0 bg-slate-900 h-full opacity-80 to-transparent"

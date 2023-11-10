@@ -11,7 +11,7 @@
             
             <img
                 :src="getImage(image)"
-                class=" sm:max-h-72  group-hover:scale-110 transition duration-300 delay-75 ease-in-out group-hover:cursor-pointer overflow-hidden "
+                class=" sm:max-h-72 group-hover:scale-110 transition duration-300 delay-75 ease-in-out group-hover:cursor-pointer overflow-hidden"
                 @load="loadedImage"
                 @error="loadingError"
             >
