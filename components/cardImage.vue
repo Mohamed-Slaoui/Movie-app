@@ -11,9 +11,11 @@
             
             <img
                 :src="getImage(image)"
+                alt="NO POSTER"
                 class=" sm:max-h-72 sm:max-w-64 group-hover:scale-110 transition duration-300 delay-75 ease-in-out group-hover:cursor-pointer overflow-hidden"
                 @load="loadedImage"
                 @error="loadingError"
+
             >
 
             <Icon v-if="!isLoading" class="absolute z-50 opacity-0 top-[40%] group-hover:opacity-100 group-hover:cursor-pointer group-hover:-translate-y-2 transition delay-100 ease-in-out" color="white" size="50px" name="material-symbols:play-arrow-outline" />
@@ -27,10 +29,11 @@ import { getImage } from '~/tools/apiTools';
 
 const url = defineProps({
     image : String,
-    id : Number
+    id : Number,
 });
 
 const isLoading = ref(true);
+
 
 const loadedImage = () =>{
     isLoading.value = false;
@@ -39,6 +42,7 @@ const loadedImage = () =>{
 const loadingError = () =>{
     isLoading.value = false;
 }
+
 
 </script>
 

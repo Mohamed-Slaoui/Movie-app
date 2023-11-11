@@ -45,7 +45,7 @@ import { initFlowbite } from 'flowbite'
 import { getApi, getImage } from '~/tools/apiTools';
 
 let jsonData = ref([]);
-const { data } = await useFetch(getApi('upcoming'));
+const { data } = await useLazyFetch(getApi('upcoming'));
 jsonData = data._rawValue.results;
 
 onMounted(() => {
